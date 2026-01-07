@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>ESIC SRO Mysuru — Guest House Allocation Dashboard</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1>ESIC SRO Mysuru — Guest House Allocation</h1>
+    <p>Load CSV, map columns, view & edit allotments for 6 rooms and check availability.</p>
+  </header>
+
+  <main>
+    <section id="load-section" class="card">
+      <h2>1) Load CSV</h2>
+      <div class="row">
+        <div class="col">
+          <label>Upload CSV file
+            <input id="file-input" type="file" accept=".csv,text/csv" />
+          </label>
+          <button id="load-file-btn">Load file</button>
+        </div>
+        <div class="col">
+          <label>Or paste CSV content</label>
+          <textarea id="csv-text" placeholder="Paste CSV here (or upload file)"></textarea>
+          <div class="controls">
+            <button id="parse-btn">Parse CSV</button>
+            <button id="load-sample">Load small sample</button>
+          </div>
+        </div>
+      </div>
+
+      <div id="preview" class="preview">
+        <h3>Preview</h3>
+        <div id="preview-table"></div>
+      </div>
+    </section>
+
+    <section id="map-section" class="card">
+      <h2>2) Map Columns</h2>
+      <p>Select which parsed CSV columns represent Month, Date and Room No.1–6</p>
+      <div class="mapping-grid" id="mapping-grid">
+        <!-- drop-downs will be injected here -->
+      </div>
+      <div class="controls">
+        <button id="build-btn" class="primary">Build Dashboard</button>
+      </div>
+    </section>
+
+    <section id="dashboard-section" class="card hidden">
+      <h2>3) Dashboard</h2>
+      <div class="controls">
+        <label>Choose month:
+          <select id="month-select"></select>
+        </label>
+        <button id="export-btn">Export CSV</button>
+      </div>
+
+      <div id="availability" class="availability"></div>
+
+      <div id="calendar" class="calendar"></div>
+    </section>
+  </main>
+
+  <!-- modal for day editing -->
+  <div id="modal" class="modal hidden" role="dialog">
+    <div class="modal-content">
+      <button id="modal-close" class="close">&times;</button>
+      <h3 id="modal-title">Edit allotments</h3>
+      <form id="modal-form">
+        <div id="modal-rooms"></div>
+        <div class="controls">
+          <button type="submit" class="primary">Save</button>
+          <button id="modal-cancel" type="button">Cancel</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <footer>
+    <small>Client-side dashboard — data stays in your browser. Suggestions or changes? Ask me.</small>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
